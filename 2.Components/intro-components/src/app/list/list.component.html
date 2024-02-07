@@ -1,0 +1,9 @@
+<button (click)="handleClickEvent()">Toggle last names</button>
+<div id="list-container">
+  <div *ngFor="let user of users" class="list-item">
+    <p><span>{{user.firstName}}</span><span *ngIf="user.showLastName"> - {{user.lastName}}</span></p>
+  </div>
+</div>
+
+<ng-template></ng-template>
+<ng-container></ng-container>
