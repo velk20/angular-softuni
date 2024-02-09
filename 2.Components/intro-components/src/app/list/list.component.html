@@ -1,9 +1,10 @@
-<button (click)="handleClickEvent()">Toggle last names</button>
-<div id="list-container">
-  <div *ngFor="let user of users" class="list-item">
-    <p><span>{{user.firstName}}</span><span *ngIf="user.showLastName"> - {{user.lastName}}</span></p>
-  </div>
-</div>
+<button (click)="handleClickEvent($event)">Toggle last names</button>
+<ul id="list-container">
+  <li *ngFor="let user of users" class="list-item">
+    <app-list-item [userItem]="user" staticString="static string" (customEvent)="customEventHandler($event)"></app-list-item>
+  </li>
+
+</ul>
 
 <ng-template></ng-template>
 <ng-container></ng-container>
