@@ -1,3 +1,5 @@
-<div>
-  <input type="text" class="text" value="das">
+<div class="input-wrapper">
+  <input type="text" id="todo-input" #itemValue>
+  <button id="submit" (click)="addItem(itemValue)">Add</button>
 </div>
+

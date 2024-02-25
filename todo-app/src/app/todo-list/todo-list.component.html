@@ -1,3 +1,3 @@
-<div class="todo-lists">
- <app-todo-item></app-todo-item>
+<div class="todo-lists" *ngFor="let todo of todoItems">
+ <app-todo-item todoValue="{{todo.value}}" (onDelete)="onDeleteHandler(todo.value)"></app-todo-item>
 </div>

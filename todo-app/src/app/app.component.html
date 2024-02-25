@@ -4,13 +4,9 @@
       <h1>Todo App</h1>
     </div>
     <div class="ta-wrapper">
-      <div class="input-wrapper">
-        <input type="text" id="todo-input">
-        <button id="submit">Add</button>
-      </div>
-      <app-todo-list>
-
-      </app-todo-list>
+      <app-add-button (onAddTodo)="onItemAdd($event)"/>
+      <app-todo-list [todoItems]="this.todoItems" (onDelete)="onItemDelete($event)"/>
     </div>
   </div>
 </div>
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-item-action',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./item-action.component.css']
 })
 export class ItemActionComponent {
+  @Input("itemId") itemValue: string = '';
+  @Output() onItemDelete = new EventEmitter<string>();
+  onItemDeleteHandler(value:string){
+    debugger;
+    this.onItemDelete.emit(value);
+
+  }
 
 }

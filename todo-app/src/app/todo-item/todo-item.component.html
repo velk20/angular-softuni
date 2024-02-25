@@ -1,4 +1,6 @@
 <div class="todo-item">
- <app-add-button/>
-<app-item-action></app-item-action>
+  <div>
+    <input type="text" class="text" value="{{todoValue}}">
+  </div>
+<app-item-action itemId="{{todoValue}}" (onItemDelete)="onDeleteHandler(todoValue)"/>
 </div>
