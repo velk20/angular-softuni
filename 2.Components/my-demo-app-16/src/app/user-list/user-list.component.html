@@ -1,0 +1,21 @@
+<ul *ngIf="isToggle">
+  <li *ngFor="let user of users; index as i">
+    <span *ngIf="i % 2 === 0" style="background-color: green">
+      {{ user.name }}
+      is {{ user.age }}
+      years old
+    </span>
+    <span *ngIf="i % 2 !== 0" style="background-color: red">
+      {{ user.name }}
+      is {{ user.age }}
+      years old
+    </span>
+    <span [style.color]="colorValue">COLORED</span>
+  </li>
+  <img [attr.stc]="imgUrl" />
+</ul>
+
+<button (click)="handleClick()" class="btn-handler">Toggle list</button>
+
+<input type="text" placeholder="username" #username />
+<button (click)="handleInput(username.value)">HandleInput</button>
