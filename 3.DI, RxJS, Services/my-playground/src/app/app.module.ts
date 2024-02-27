@@ -4,14 +4,48 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { UserItemComponent } from './user-item/user-item.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { Observable } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, UserItemComponent, UserListComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+//* Observables and RxJS
+const o = new Observable((observer) => {
+  observer.next(100);
+  observer.next(101);
+  observer.next(102);
+  observer.next(103);
+});
+
+o.subscribe((data) => {
+  console.log('from observable ' + data);
+});
+
+//* Promise ->
+// - promises are not lazy, code is invoked immediately
+// - promises can not be cancelled
+const p = new Promise((resolve, reject) => {
+  console.log('Promised invoked!');
+
+  setTimeout(() => {
+    resolve(111);
+  }, 3000);
+});
+
+p.then((data) => {
+  console.log('from promise');
+});
+
+//short syntax
+Promise.resolve(123).then((data) => {
+  console.log('from promise');
+});
 
 //* DEPENDENCY INJECTION
 // class Car {

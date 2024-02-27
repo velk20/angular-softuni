@@ -1,5 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { User } from './types/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,17 @@ export class UserService implements OnDestroy {
   ngOnDestroy(): void {
     //detach from events, clear data
     console.log(`Destroyed`);
+  }
+
+  getUsers() {
+    return fetch('https://jsonplaceholder.typicode.com/users').then(
+      (response) => response.json()
+    );
+  }
+
+  constructor(private http: HttpClient) {}
+
+  getUsersWithHttpClient() {
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
   }
 }
