@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { PostService } from './post-service.service';
+import { PostService } from './service/post/post-service.service';
+import {UserService} from "./service/user/user.service";
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,15 @@ import { PostService } from './post-service.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'post-app-demo';
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService,
+              private userService: UserService) {}
 
   ngOnDestroy(): void {
     localStorage.removeItem('access_token');
     }
   ngOnInit(): void {
-    this.postService
-      .getJwtTokenFromServer('admin', 'admin')
+    this.userService
+      .getJwtTokenFromServer({username:'admin', password:'admin'})
       .subscribe((token) => {
         const newToken = token.token
         console.log(token);
