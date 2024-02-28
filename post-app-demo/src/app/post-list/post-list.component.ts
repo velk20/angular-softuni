@@ -12,11 +12,9 @@ export class PostListComponent implements OnInit {
 
   constructor(private _postService: PostService) {}
   ngOnInit(): void {
-    debugger;
     this._postService.getPosts().subscribe((posts) => {
       console.log(posts);
       this.posts = posts;
     });
-    debugger;
   }
 }
