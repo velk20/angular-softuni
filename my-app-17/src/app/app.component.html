@@ -1,0 +1,19 @@
+<div>{{ title }}</div>
+<ul>
+  @for (task of tasks; track task.id) {
+  <div>
+    @if (task.status ==='todo') {
+    <li style="background-color: red">
+      {{ task.name }} - Status: {{ task.status }}
+    </li>
+    }@else {
+    <li style="background-color: green">
+      {{ task.name }} - Status: {{ task.status }}
+    </li>
+    }
+  </div>
+
+  }
+</ul>
+
+<router-outlet />
