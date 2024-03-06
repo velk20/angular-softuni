@@ -1,0 +1,15 @@
+.nav-btn {
+  margin: 20xp;
+  padding: 20px;
+  background-color: chocolate;
+  color: #fff;
+
+  width: fit-content;
+}
+
+.nav-btn:hover {
+  background-color: aliceblue;
+  color: blue;
+  cursor: pointer;
+  
+}

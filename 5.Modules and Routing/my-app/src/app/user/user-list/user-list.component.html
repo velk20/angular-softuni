@@ -1,0 +1,12 @@
+<!--<div (click)="fetchUsers()" [class.disabled]="isLoading" class="btn">-->
+<!--  <span *ngIf="!isLoading">Reload users</span>-->
+<!--  <app-global-loader *ngIf="isLoading"/>-->
+<!--</div>-->
+
+<div>
+  <ul>
+    <li *ngFor="let user of users">
+      <span>{{ user.name }}</span>
+    </li>
+  </ul>
+</div>
