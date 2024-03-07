@@ -7,10 +7,12 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
 import {UserModule} from "./user/user.module";
 import {TodoModule} from "./todo/todo.module";
+import {UserDetailsComponent} from './user/user-details/user-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,4 +15,8 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.API);
   }
+
+  getSingleUser(id: string): Observable<User> {
+    return this.http.get<User>(this.API + `/${id}`);
+  }
 }

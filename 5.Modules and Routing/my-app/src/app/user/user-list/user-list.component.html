@@ -5,7 +5,7 @@
 
 <div>
   <ul>
-    <li *ngFor="let user of users">
+    <li *ngFor="let user of users" [routerLink]="['/user','list', user.id]" class="item">
       <span>{{ user.name }}</span>
     </li>
   </ul>
