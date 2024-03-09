@@ -10,9 +10,18 @@ import { Post } from './types/post';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  createTheme(themeName: string, postText: string) {
+    const { apiUrl } = environment;
+    return this.http.post<Theme>(`${apiUrl}/themes`, {themeName, postText})
+  }
   getThemes() {
     const { apiUrl } = environment;
     return this.http.get<Theme[]>(`${apiUrl}/themes`);
+  }
+
+  getTheme(id:string) {
+    const {apiUrl} = environment;
+    return this.http.get<Theme>(`${apiUrl}/themes/${id}`);
   }
 
   getPosts(limit?: number) {
