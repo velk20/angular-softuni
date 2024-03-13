@@ -2,3 +2,44 @@
 
 <div appMyRouterLink="/login" style="cursor: pointer">Go to Login</div>
 <div appMyRouterLink="/register" style="cursor: pointer">Go to Register</div>
+
+<hr>
+
+<div *ngIf="true">
+  <div>Simple Div</div>
+  <div>Simple Div</div>
+  <div>Simple Div</div>
+</div>
+
+<ng-template [ngIf]="true">
+  <div>
+    <div>Simple Div 2</div>
+    <div>Simple Div 2</div>
+    <div>Simple Div 2</div>
+  </div>
+</ng-template>
+
+<hr>
+<!-- Custom Directives -->
+<button (click)="toggle()">Toggle</button>
+
+<!--Usage 1-->
+<div *appMyStructural="isShown" style="cursor: pointer"> Structural Custom Directive 1</div>
+
+<!--Usage 2-->
+<ng-template #directiveRef="appMyStructural" [appMyStructural]="isShown" let-testMe="myCustomValue">
+  <div>
+    Structural Custom Directive 2
+  </div>
+  <div>myValue: {{ testMe }}</div>
+</ng-template>
+
+<button (click)="simpleClick(directiveRef)">Directive Click</button>
+
+<hr>
+<!--Usage 3-->
+<ng-template #tmp>
+  <div>Usage 3</div>
+</ng-template>
+
+<ng-container [appMyStructural]="isShown" [myTmpRef]="tmp"/>
