@@ -1,4 +1,30 @@
-<p>register works!</p>
+<h2>Registration</h2>
 
+<!--REACTIVE FORMS-->
+<form (ngSubmit)="formSubmitHandler()" [formGroup]="registerForm">
+  <div class="class-group">
+    <label for="email">Email</label>
+    <input formControlName="email" id="email" name="email" type="text">
+  </div>
+  <div *ngIf="registerForm.get('email')?.touched">
+    <div *ngIf="registerForm.get('email')?.errors?.['required']" style="color: #de2d2d">Email is required!</div>
+    <div *ngIf="registerForm.get('email')?.errors?.['email']" style="color: #de2d2d">Email is invalid!</div>
+  </div>
+  <div class="class-group">
+    <label for="password">Password</label>
+    <input formControlName="password" id="password" name="password" type="text">
+    <div *ngIf="registerForm.get('password')?.touched">
+      <div *ngIf="registerForm.get('password')?.errors?.['required']" style="color: #de2d2d">Password is required!</div>
+      <div *ngIf="registerForm.get('password')?.errors?.['maxlength']" style="color: #de2d2d">Password max length is
+        {{ registerForm.get('password')?.errors?.['maxlength']?.requiredLength }}!
+      </div>
+    </div>
+  </div>
+  <br>
+  <button [disabled]="registerForm.invalid">Login</button>
+</form>
+<br>
+{{ registerForm.value | json }}
+<br>
 <div appMyRouterLink="/" style="cursor: pointer">GO back to Home</div>
 <div appMyRouterLink="/login" style="cursor: pointer">GO to Login</div>

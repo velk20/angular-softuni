@@ -1,4 +1,29 @@
-<p>login works!</p>
+<h1>Login</h1>
 
+<!--TEMPLATE DRIVEN-->
+<form #loginForm="ngForm" (ngSubmit)="formSubmitHandler()">
+  <div class="class-group">
+    <label for="email">Email</label>
+    <input #emailInput="ngModel" email id="email" name="email" ngModel required type="text">
+  </div>
+  <div *ngIf="loginForm.touched">
+    <div *ngIf="emailInput.errors?.['required']" style="color: #de2d2d">Email is required!</div>
+    <div *ngIf="emailInput.errors?.['email']" style="color: #de2d2d">Email is invalid!</div>
+  </div>
+  <div class="class-group">
+    <label for="password">Password</label>
+    <input #passInput="ngModel" [appMaxCount]="4" id="password" name="password" ngModel required type="text">
+    <div *ngIf="loginForm.touched">
+      <div *ngIf="passInput.errors?.['required']" style="color: #de2d2d">Password is required!</div>
+      <div *ngIf="passInput.errors?.['appMaxCount']" style="color: #de2d2d">Password max length is 4!</div>
+    </div>
+  </div>
+  <br>
+  <button>Login</button>
+</form>
+<br>
+{{ loginForm.value | json }}
+<br>
+<hr>
 <div appMyRouterLink="/" style="cursor: pointer">GO back to Home</div>
 <div appMyRouterLink="/register" style="cursor: pointer">GO to Register</div>
