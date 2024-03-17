@@ -7,17 +7,13 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import {ThemeModule} from "./theme/theme.module";
-import {UserModule} from "./user/user.module";
+import { ThemeModule } from './theme/theme.module';
+import { UserModule } from './user/user.module';
 import { ErrorComponent } from './error/error.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ErrorComponent
-  ],
+  declarations: [AppComponent, HomeComponent, ErrorComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -26,6 +22,7 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     UserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule, // after other modules cause of the .forChild routing
   ],
   providers: [],

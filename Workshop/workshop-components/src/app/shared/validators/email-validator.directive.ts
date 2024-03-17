@@ -22,6 +22,19 @@ export class EmailValidatorDirective implements Validator, OnChanges {
 
   constructor() {}
 
+  static emailValidate(domains: string[]): ValidatorFn {
+    const domainString = domains.join('|');
+    const regex = new RegExp(`[A-Za-z0-9]+@gmail\\.(${domainString})`);
+
+    return (control) => {
+      const isEmailInvalid = control.value === '' || regex.test(control.value);
+      return isEmailInvalid ? null : { emailValidator: true };
+      //! emailValidator property will be used
+      //! in the HTML template to get the error for email we need
+      //! like this: *ngIf="inputEmail.errors?.['emailValidator']"
+    };
+  }
+
   validator: ValidatorFn = () => null;
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
@@ -36,20 +49,7 @@ export class EmailValidatorDirective implements Validator, OnChanges {
     const { currentValue } = changes['appEmailValidator'];
 
     if (currentValue?.length) {
-      this.validator = this.emailValidate(currentValue);
+      this.validator = EmailValidatorDirective.emailValidate(currentValue);
     }
-  }
-
-  emailValidate(domains: string[]): ValidatorFn {
-    const domainString = domains.join('|');
-    const regex = new RegExp(`[A-Za-z0-9]+@gmail\\.(${domainString})`);
-
-    return (control) => {
-      const isEmailInvalid = control.value === '' || regex.test(control.value);
-      return isEmailInvalid ? null : { emailValidator: true };
-      //! emailValidator property will be used
-      //! in the HTML template to get the error for email we need
-      //! like this: *ngIf="inputEmail.errors?.['emailValidator']"
-    };
   }
 }
