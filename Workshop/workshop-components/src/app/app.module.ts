@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import {ThemeModule} from "./theme/theme.module";
 import {UserModule} from "./user/user.module";
 import { ErrorComponent } from './error/error.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ErrorComponent } from './error/error.component';
     ThemeModule,
     HttpClientModule,
     UserModule,
-
+    FormsModule,
     AppRoutingModule, // after other modules cause of the .forChild routing
   ],
   providers: [],

@@ -1,39 +1,65 @@
 <!-- homepage -->
 <div class="container">
-  <form class="login" action="" method="post">
-
+  <form #form="ngForm" (ngSubmit)="login(form)" class="login">
     <fieldset>
       <h2>Login Form</h2>
 
       <p class="field field-icon">
-        <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-        <input #inputEmail class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+        <label for="email"
+          ><span><i class="fas fa-envelope"></i></span
+        ></label>
+        <input
+          #inputEmail="ngModel"
+          [appEmailValidator]="['bg', 'com']"
+          class="input-error"
+          id="email"
+          name="email"
+          ngModel
+          placeholder="john.doe@gmail.com"
+          required
+          type="email"
+        />
       </p>
-      <p class="error">
-        Email is required!
-      </p>
-      <!-- <p class="error">
+      <ng-container *ngIf="inputEmail.touched">
+        <p *ngIf="inputEmail.errors?.['required']" class="error">
+          Email is required!
+        </p>
+        <p *ngIf="inputEmail.errors?.['emailValidator']" class="error">
           Email is not valid!
-      </p> -->
+        </p>
+      </ng-container>
 
       <p class="field field-icon">
-        <label for="password"><span><i class="fas fa-lock"></i></span></label>
-        <input #inputPassword type="password" name="password" id="password" placeholder="******">
+        <label for="password"
+          ><span><i class="fas fa-lock"></i></span
+        ></label>
+        <input
+          #inputPassword="ngModel"
+          id="password"
+          minlength="5"
+          name="password"
+          ngModel
+          placeholder="******"
+          required
+          type="password"
+        />
       </p>
-      <!-- <p class="error">
-          Password is required!
-      </p>
-      <p class="error">
-          Password must be at least 4 characters!
-      </p> -->
 
-      <button (click)="login($event, inputEmail.value, inputPassword.value)">Login</button>
+      <ng-container *ngIf="inputPassword.touched">
+        <p *ngIf="inputPassword.errors?.['required']" class="error">
+          Password is required!
+        </p>
+        <p *ngIf="inputPassword.errors?.['minlength']" class="error">
+          Password must be at least 5 characters!
+        </p>
+      </ng-container>
+
+      <button>Login</button>
 
       <p class="text-center">
         Have an account?
         <a routerLink="/register">Register</a>
       </p>
-
     </fieldset>
   </form>
 </div>
