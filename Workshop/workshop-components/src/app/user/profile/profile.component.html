@@ -1,20 +1,46 @@
 
 <!-- homepage -->
 <div class="container">
-  <div class="profile"><img src="./profile.png" alt="default user">
+  <div class="profile"><img src="assets/profile.png" alt="default user">
     <h3>User Info:</h3>
-    <div class="flex">
-      <p>Username: </p>
-      <p>{{ user?.firstName }}</p>
-    </div>
-    <div class="flex">
-      <p>Email: </p>
-      <p>{{ user?.email }}</p>
-    </div>
-    <div class="flex">
-      <p>Phone: </p>
-      <p>{{ user?.phoneNumber }}</p>
-    </div>
-    <button class="edit-button">Edit</button>
+    <ng-container *ngIf="!showEditMode">
+      <div class="flex">
+        <p>Username: </p>
+        <p>{{ profileDetails?.username }}</p>
+      </div>
+      <div class="flex">
+        <p>Email: </p>
+        <p>{{ profileDetails?.email }}</p>
+      </div>
+      <div class="flex">
+        <p>Phone: </p>
+        <p>{{ profileDetails?.tel }}</p>
+      </div>
+      <button (click)="onEdit()" class="edit-button">Edit</button>
+    </ng-container>
+
+    <form [formGroup]="profileForm" (ngSubmit)="save()" *ngIf="showEditMode">
+      <div class="flex">
+        <p>Username: </p>
+        <input formControlName="username" type="text" name="username" id="username" value="Johny">
+      </div>
+      <div class="flex">
+        <p>Email: </p>
+        <input formControlName="email" type="email" name="email" id="email" value="john.doe@gmail.com">
+      </div>
+      <div class="flex">
+        <p>Phone: </p>
+        <div>
+          <select name="select-tel" id="select-tel" class="tel">
+            <option value="00359">+359</option>
+          </select>
+          <input formControlName="tel" type="text" name="tel" id="tel" value="885 888 888">
+        </div>
+      </div>
+      <button (click)="onEdit()" class="red-button">Cancel</button>
+      <button type="submit" class="green-button">Save</button>
+    </form>
+
+
   </div>
 </div>

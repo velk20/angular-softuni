@@ -1,3 +1,4 @@
+
 export interface User {
   themes: string[];
   posts: string[];
@@ -17,4 +18,10 @@ export interface UserForAuth {
   email: string;
   phoneNumber: string;
   password: string;
+}
+
+export interface ProfileDetails {
+  username: string;
+  email: string;
+  tel:string;
 }
