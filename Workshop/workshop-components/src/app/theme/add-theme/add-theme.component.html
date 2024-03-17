@@ -4,32 +4,53 @@
     <div class="header-background">
       <span>New Theme</span>
     </div>
-    <form method="post">
+    <form #form="ngForm" (ngSubmit)="addTheme(form)">
       <div class="new-theme-title">
         <label for="themeName">Title <span class="red">*</span></label>
-        <input #themeNameInput type="text" name="themeName" id="themeName">
-        <p class="error">
-          Theme name is required.
-        </p>
-        <p class="error">
-          Theme name must be at least 5 characters long.
-        </p>
+        <input
+          #themeNameInput="ngModel"
+          id="themeName"
+          minlength="5"
+          name="themeName"
+          ngModel
+          required
+          type="text"
+        />
+        <ng-container *ngIf="themeNameInput.touched">
+          <p *ngIf="themeNameInput?.errors?.['required']" class="error">
+            Theme name is required.
+          </p>
+          <p *ngIf="themeNameInput?.errors?.['minlength']" class="error">
+            Theme name must be at least 5 characters long.
+          </p>
+        </ng-container>
       </div>
       <div class="new-theme-content">
         <label for="postText">Post <span class="red">*</span></label>
-        <textarea type="text" name="postText" id="postText" #postText rows="8" class="height"></textarea>
-        <p class="error">
-          The field with your post is required.
-        </p>
-        <p class="error">
-          Post must be at least 10 characters long.
-        </p>
+        <textarea
+          #postText="ngModel"
+          class="height"
+          id="postText"
+          minlength="10"
+          name="postText"
+          ngModel
+          required
+          rows="8"
+          type="text"
+        ></textarea>
+        <ng-container *ngIf="postText.touched">
+          <p *ngIf="postText?.errors?.['required']" class="error">
+            The field with your post is required.
+          </p>
+          <p *ngIf="postText?.errors?.['minlength']" class="error">
+            Post must be at least 10 characters long.
+          </p>
+        </ng-container>
       </div>
       <div class="new-theme-buttons">
         <button class="cancel">Cancel</button>
-        <button (click)="addTheme($event, themeNameInput.value, postText.value)" class="public">Post</button>
+        <button class="public" type="submit">Post</button>
       </div>
-
     </form>
   </div>
 </div>
