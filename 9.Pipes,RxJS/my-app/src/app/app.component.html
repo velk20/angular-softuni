@@ -9,3 +9,12 @@
 
 <hr />
 <div>Clock: {{ time$ | async | date : "HH:mm:ss" }}</div>
+<hr />
+
+<div>
+  <a routerLink="/">Home</a>
+</div>
+<div>
+  <a routerLink="/lazy">Lazy</a>
+</div>
+<router-outlet />
