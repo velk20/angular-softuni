@@ -10,10 +10,10 @@ import { UserService } from './user.service';
 export class AppComponent implements OnInit {
   constructor(private userService: UserService) {}
   ngOnInit(): void {
-    this.userService.loadUsers().subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.error(error),
-    });
+    // this.userService.loadUsers().subscribe({
+    //   next: (data) => console.log(data),
+    //   error: (error) => console.error(error),
+    // });
   }
 
   //! -------------------------PIPES--------------------------------
@@ -21,6 +21,15 @@ export class AppComponent implements OnInit {
 
   sum(acc: number, curr: number): number {
     return acc + curr;
+  }
+
+  users$ = this.userService.usersObs$;
+
+  loadUsers() {
+    this.userService.loadUsers();
+  }
+  reloadUsers() {
+    this.userService.loadUsers();
   }
 
   addProperty() {
