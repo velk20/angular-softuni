@@ -11,6 +11,7 @@ import { ThemeModule } from './theme/theme.module';
 import { UserModule } from './user/user.module';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { appInterceptorProvider } from './app.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ErrorComponent],
@@ -25,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AppRoutingModule, // after other modules cause of the .forChild routing
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

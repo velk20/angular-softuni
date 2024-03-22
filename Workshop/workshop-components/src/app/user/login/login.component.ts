@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
-import {UserService} from "../user.service";
-import {Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private userService: UserService,
-              private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+  ) {}
 
-  }
-
-  login(form:NgForm) {
+  login(form: NgForm) {
     if (form.invalid) {
-      console.log(form.invalid)
       return;
     }
-    console.log(form.value)
-    this.userService.login();
-    this.router.navigate(['/home']);
+    const { email, password } = form.value;
+    this.userService.login(email, password).subscribe(() => {
+      this.router.navigate(['/themes']);
+    });
   }
 }

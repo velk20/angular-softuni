@@ -1,42 +1,66 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {User, UserForAuth} from "../types/user";
+import { Injectable, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { UserForAuth } from '../types/user';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnDestroy {
   user: UserForAuth | undefined;
   USER_KEY = '[user]';
+
+  userSubscription: Subscription;
+  private user$$ = new BehaviorSubject<UserForAuth | undefined>(undefined);
+  private user$ = this.user$$.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   get isLogged(): boolean {
     return !!this.user;
   }
-  constructor(private http: HttpClient) {
-    try {
-      const lsUser = localStorage.getItem(this.USER_KEY) || '';
-      this.user = JSON.parse(lsUser);
-    } catch (error){
-      this.user = undefined;
-    }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 
-  login(){
-    this.user = {
-      id: '5fa64c1f2183ce1728ff3723',
-      firstName: 'Petko',
-      email: 'petkoimava@bv.bg',
-      password: '123123',
-      phoneNumber: '0878285643'
-    };
-
-    localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+  login(email: string, password: string) {
+    return this.http.post<UserForAuth>('/api/login', { email, password }).pipe(
+      tap((user) => {
+        this.user$$.next(user);
+      }),
+    );
   }
 
-  logout(){
-    this.user = undefined;
-    localStorage.removeItem(this.USER_KEY);
+  logout() {
+    return this.http
+      .post('/api/logout', {})
+      .pipe(tap((user) => this.user$$.next(undefined)));
   }
 
-  register(){}
+  register(
+    username: string,
+    tel: string,
+    email: string,
+    password: string,
+    rePassword: string,
+  ) {
+    return this.http
+      .post<UserForAuth>('/api/register', {
+        username,
+        tel,
+        email,
+        password,
+        rePassword,
+      })
+      .pipe(
+        tap((user) => {
+          this.user$$.next(user);
+        }),
+      );
+  }
 }
