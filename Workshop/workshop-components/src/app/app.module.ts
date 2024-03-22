@@ -11,9 +11,10 @@ import { ThemeModule } from './theme/theme.module';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { appInterceptorProvider } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ErrorComponent],
+  declarations: [AppComponent, HomeComponent, ErrorComponent, AuthenticateComponent],
   imports: [
     BrowserModule,
     CoreModule,
