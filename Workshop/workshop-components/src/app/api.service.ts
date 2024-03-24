@@ -11,16 +11,16 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   createTheme(themeName: string, postText: string) {
-    const { apiUrl } = environment;
-    return this.http.post<Theme>(`${apiUrl}/themes`, {themeName, postText})
+    return this.http.post<Theme>(`/api/themes`, { themeName, postText });
   }
+
   getThemes() {
     const { apiUrl } = environment;
     return this.http.get<Theme[]>(`${apiUrl}/themes`);
   }
 
-  getTheme(id:string) {
-    const {apiUrl} = environment;
+  getTheme(id: string) {
+    const { apiUrl } = environment;
     return this.http.get<Theme>(`${apiUrl}/themes/${id}`);
   }
 

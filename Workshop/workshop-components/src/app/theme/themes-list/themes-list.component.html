@@ -9,8 +9,7 @@
       <div class="theme-name-wrapper">
         <div class="theme-name">
           <a class="normal" routerLink="/themes/{{ theme._id }}">
-            <h2>{{ theme.themeName }}</h2>
-            <h2>{{ theme.themeName }}</h2>
+            <h2>{{ theme.themeName | slice: 25 }}</h2>
           </a>
           <div class="columns">
             <div>

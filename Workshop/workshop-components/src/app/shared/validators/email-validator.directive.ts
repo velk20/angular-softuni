@@ -30,7 +30,7 @@ export class EmailValidatorDirective implements Validator, OnChanges {
       const isEmailInvalid = control.value === '' || regex.test(control.value);
       return isEmailInvalid ? null : { emailValidator: true };
       //! emailValidator property will be used
-      //! in the HTML template to get the error for email we need
+      //! in the HTML template to get the not-found for email we need
       //! like this: *ngIf="inputEmail.errors?.['emailValidator']"
     };
   }

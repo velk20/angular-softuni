@@ -1,46 +1,62 @@
-
 <!-- homepage -->
 <div class="container">
-  <div class="profile"><img src="assets/profile.png" alt="default user">
+  <div class="profile">
+    <img alt="default user" src="assets/profile.png" />
     <h3>User Info:</h3>
     <ng-container *ngIf="!showEditMode">
       <div class="flex">
-        <p>Username: </p>
+        <p>Username:</p>
         <p>{{ profileDetails?.username }}</p>
       </div>
       <div class="flex">
-        <p>Email: </p>
+        <p>Email:</p>
         <p>{{ profileDetails?.email }}</p>
       </div>
       <div class="flex">
-        <p>Phone: </p>
+        <p>Phone:</p>
         <p>{{ profileDetails?.tel }}</p>
       </div>
-      <button (click)="onEdit()" class="edit-button">Edit</button>
+      <button (click)="onEditToggle()" class="edit-button">Edit</button>
     </ng-container>
 
-    <form [formGroup]="profileForm" (ngSubmit)="save()" *ngIf="showEditMode">
+    <form (ngSubmit)="save()" *ngIf="showEditMode" [formGroup]="profileForm">
       <div class="flex">
-        <p>Username: </p>
-        <input formControlName="username" type="text" name="username" id="username" value="Johny">
+        <p>Username:</p>
+        <input
+          formControlName="username"
+          id="username"
+          name="username"
+          type="text"
+          value="Johny"
+        />
       </div>
       <div class="flex">
-        <p>Email: </p>
-        <input formControlName="email" type="email" name="email" id="email" value="john.doe@gmail.com">
+        <p>Email:</p>
+        <input
+          formControlName="email"
+          id="email"
+          name="email"
+          type="email"
+          value="john.doe@gmail.com"
+        />
       </div>
       <div class="flex">
-        <p>Phone: </p>
+        <p>Phone:</p>
         <div>
-          <select name="select-tel" id="select-tel" class="tel">
+          <select class="tel" id="select-tel" name="select-tel">
             <option value="00359">+359</option>
           </select>
-          <input formControlName="tel" type="text" name="tel" id="tel" value="885 888 888">
+          <input
+            formControlName="tel"
+            id="tel"
+            name="tel"
+            type="text"
+            value="885 888 888"
+          />
         </div>
       </div>
-      <button (click)="onEdit()" class="red-button">Cancel</button>
+      <button (click)="onEditToggle()" class="red-button">Cancel</button>
       <button type="submit" class="green-button">Save</button>
     </form>
-
-
   </div>
 </div>

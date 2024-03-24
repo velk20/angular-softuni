@@ -4,10 +4,24 @@ import { LoaderComponent } from './loader/loader.component';
 import { WelcomeMsgComponent } from './welcome-msg/welcome-msg.component';
 import { RouterLink } from '@angular/router';
 import { EmailValidatorDirective } from './validators/email-validator.directive';
+import { SlicePipe } from './pipes/slice.pipe';
+import { ElapsedTimePipe } from './pipes/elapsed-time.pipe';
 
 @NgModule({
-  declarations: [LoaderComponent, WelcomeMsgComponent, EmailValidatorDirective],
+  declarations: [
+    LoaderComponent,
+    WelcomeMsgComponent,
+    EmailValidatorDirective,
+    SlicePipe,
+    ElapsedTimePipe,
+  ],
   imports: [CommonModule, RouterLink],
-  exports: [LoaderComponent, WelcomeMsgComponent, EmailValidatorDirective],
+  exports: [
+    LoaderComponent,
+    WelcomeMsgComponent,
+    EmailValidatorDirective,
+    SlicePipe,
+    ElapsedTimePipe,
+  ],
 })
 export class SharedModule {}
